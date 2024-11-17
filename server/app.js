@@ -2,12 +2,12 @@
 const express = require('express')
 const app = express()
 const {graphqlHTTP} = require('express-graphql')
-//const schema = require('./schema');
+const schema = require('./schema/schema');
 //#endregion
 
 //#region setup
 app.use('/graphql', graphqlHTTP({
-    //schema: schema,
+    schema: schema,
     graphiql: true
 }))
 
