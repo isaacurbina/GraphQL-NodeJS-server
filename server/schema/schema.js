@@ -9,6 +9,12 @@ var usersData = [
     {id: '158', name: 'Georgina', age: 36, profession: "Teacher"}
 ]
 
+var postsData = [
+    {id: '1', comment: 'Building a Mind.'},
+    {id: '2', comment: 'GraphQL is Amazing.'},
+    {id: '3', comment: 'How to Change the World.'}
+]
+
 var hobbiesData = [
     {id: '1', title: 'Programming', description: 'Using computers to make the world a better place.'},
     {id: '2', title: 'Rowing', description: 'Sweat and feel better before eating donuts.'},
@@ -23,7 +29,7 @@ const {
     GraphQLString,
     GraphQLInt,
     GraphQLSchema
-} = graphql
+} = graphql;
 
 // Create types
 const UserType = new graphql.GraphQLObjectType({
@@ -35,7 +41,7 @@ const UserType = new graphql.GraphQLObjectType({
         age: {type: GraphQLInt},
         profession: {type: GraphQLString}
     })
-})
+});
 
 const HobbyType = new graphql.GraphQLObjectType({
     name: "Hobby",
@@ -44,6 +50,15 @@ const HobbyType = new graphql.GraphQLObjectType({
         id: {type: GraphQLID},
         title: {type: GraphQLString},
         description: {type: GraphQLString}
+    })
+});
+
+const PostType = new graphql.GraphQLObjectType({
+    name: "Post",
+    description: "Post description",
+    fields: () => ({
+        id: {type: GraphQLID},
+        comment: {type: GraphQLString}
     })
 })
 
@@ -60,17 +75,27 @@ const RootQuery = new GraphQLObjectType({
                 return _.find(usersData, { id: args.id})
             }
         },
+
         hobby: {
             type: HobbyType,
-            arg: {id: {type: GraphQLID}},
+            args: {id: {type:GraphQLID}},
 
             resolve(parent, args) {
                 return _.find(hobbiesData, {id: args.id})
             }
+        },
+
+        post: {
+            type: PostType,
+            args: {id: {type:GraphQLID}},
+
+            resolve(parent, args) {
+                return _.find(postsData, {id: args.id})
+            }
         }
     })
-})
+});
 
 module.exports = new GraphQLSchema({
     query: RootQuery
-})
+});
