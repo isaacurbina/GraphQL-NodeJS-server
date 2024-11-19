@@ -10,17 +10,19 @@ var usersData = [
 ]
 
 var postsData = [
-    {id: '1', comment: 'Building a Mind.'},
-    {id: '2', comment: 'GraphQL is Amazing.'},
-    {id: '3', comment: 'How to Change the World.'}
+    {id: '1', comment: 'Building a Mind.', userId: '1'},
+    {id: '2', comment: 'GraphQL is Amazing.', userId: '1'},
+    {id: '3', comment: 'How to Change the World.', userId: '19'},
+    {id: '4', comment: 'How to Change the World.', userId: '211'},
+    {id: '5', comment: 'How to Change the World.', userId: '1'},
 ]
 
 var hobbiesData = [
-    {id: '1', title: 'Programming', description: 'Using computers to make the world a better place.'},
-    {id: '2', title: 'Rowing', description: 'Sweat and feel better before eating donuts.'},
-    {id: '3', title: 'Swimming', description: 'Get in the water and learn to become the water.'},
-    {id: '4', title: 'Fencing', description: 'A hobby for fency people.'},
-    {id: '5', title: 'Hiking', description: 'Wear hiking boots and explore the world.'},
+    {id: '1', title: 'Programming', description: 'Using computers to make the world a better place.', userId: '1'},
+    {id: '2', title: 'Rowing', description: 'Sweat and feel better before eating donuts.', userId: '1'},
+    {id: '3', title: 'Swimming', description: 'Get in the water and learn to become the water.', userId: '158'},
+    {id: '4', title: 'Fencing', description: 'A hobby for fency people.', userId: '211'},
+    {id: '5', title: 'Hiking', description: 'Wear hiking boots and explore the world.', userId: '13'},
 ]
 
 const {
@@ -49,7 +51,14 @@ const HobbyType = new graphql.GraphQLObjectType({
     fields: () => ({
         id: {type: GraphQLID},
         title: {type: GraphQLString},
-        description: {type: GraphQLString}
+        description: {type: GraphQLString},
+        user: {
+            type: UserType,
+
+            resolve(parent, args) {
+                return _.find(usersData, {id: parent.userId})
+            }
+        }
     })
 });
 
@@ -58,7 +67,14 @@ const PostType = new graphql.GraphQLObjectType({
     description: "Post description",
     fields: () => ({
         id: {type: GraphQLID},
-        comment: {type: GraphQLString}
+        comment: {type: GraphQLString},
+        user: {
+            type: UserType,
+
+            resolve(parent, args) {
+                return _.find(usersData, {id: parent.userId})
+            }
+        }
     })
 })
 
