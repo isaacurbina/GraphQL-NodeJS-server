@@ -1,7 +1,7 @@
 //#region constants
 const express = require('express')
 const app = express()
-const {graphqlHTTP} = require('express-graphql')
+const graphqlHTTP = require('express-graphql')
 const schema = require('./schema/schema');
 //#endregion
 
