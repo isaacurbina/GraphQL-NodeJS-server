@@ -6,7 +6,9 @@ const {
     GraphQLString,
     GraphQLInt,
     GraphQLBoolean,
-    GraphQLFloat
+    GraphQLFloat,
+    GraphQLSchema,
+    GraphQLNonNull
 } = graphql;
 
 // Scalar Type
@@ -15,8 +17,8 @@ const Person = new GraphQLObjectType({
     description: 'Represents a Person Type',
     fields: () => ({
         id: {type: GraphQLID},
-        name: {type: GraphQLString},
-        age: {type: GraphQLInt},
+        name: {type: new GraphQLNonNull(GraphQLString)},
+        age: {type: new GraphQLNonNull(GraphQLInt)},
         isMarried: {type: GraphQLBoolean},
         gpa: {type: GraphQLFloat}
     })
