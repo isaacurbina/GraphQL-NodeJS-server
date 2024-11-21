@@ -35,7 +35,7 @@ const {
 } = graphql;
 
 // Create types
-const UserType = new graphql.GraphQLObjectType({
+const UserType = new GraphQLObjectType({
     name: 'User',
     description: 'Documentation for user...',
     fields: () => ({
@@ -60,7 +60,7 @@ const UserType = new graphql.GraphQLObjectType({
     })
 });
 
-const HobbyType = new graphql.GraphQLObjectType({
+const HobbyType = new GraphQLObjectType({
     name: "Hobby",
     description: "Hobby description",
     fields: () => ({
@@ -77,7 +77,7 @@ const HobbyType = new graphql.GraphQLObjectType({
     })
 });
 
-const PostType = new graphql.GraphQLObjectType({
+const PostType = new GraphQLObjectType({
     name: "Post",
     description: "Post description",
     fields: () => ({
