@@ -1,10 +1,10 @@
-const mongoose = require('mongoose')
-const MSchema = mongoose.Schema
+const mongoose = require("mongoose");
+const MSchema = mongoose.Schema;
 
 const userSchema = new MSchema({
-    name: String,
-    age: Number,
-    profession: String
-})
+  name: String,
+  age: Number,
+  profession: String,
+});
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model("User", userSchema);
